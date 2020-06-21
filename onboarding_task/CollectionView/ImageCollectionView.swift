@@ -44,7 +44,7 @@ extension ImageCollectionView {
             self.reloadData()
         }
         
-        imageViewModel.onReload = {[weak self] (index: Int, isDownloadingCompleted: Bool) in
+        imageViewModel.onReload = { [weak self] (index: Int, isDownloadingCompleted: Bool) in
             guard let `self` = self else{
                 return
             }
@@ -125,7 +125,10 @@ extension ImageCollectionView: UICollectionViewDelegate, UICollectionViewDataSou
             guard let `self` = self else {
                 return
             }
+            
             self.imageViewModel.downloadService.cancelDownload(photo)
+            cell.btnDownload.isHidden = false
+            cell.btnCancel.isHidden = true
         }
         return cell
     }
