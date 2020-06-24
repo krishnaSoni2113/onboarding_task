@@ -81,7 +81,7 @@ extension ImageCollectionView {
     }
     
     private func configureImageViewModel() {
-        imageViewModel.getImage()
+        imageViewModel.getImagesFromServer()
     }
 }
 

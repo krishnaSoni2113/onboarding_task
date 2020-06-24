@@ -19,7 +19,7 @@ final class ImageViewModel: NSObject {
     
     lazy var downloadsSession: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier:
-            "com.raywenderlich.HalfTunes.bgSession")
+            "com.test.onboarding-task")
         return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }()
     
@@ -28,7 +28,7 @@ final class ImageViewModel: NSObject {
         downloadService.downloadsSession = downloadsSession
     }
     
-    func getImage() {
+    func getImagesFromServer() {
         
         imageService.fetchImages(key: "") {[weak self] (imageModel, error) in
             
@@ -45,28 +45,14 @@ final class ImageViewModel: NSObject {
     }
     
 }
-// MARK: - Search Photos -
-extension ImageViewModel {
-    
-    func searchPhoto(search: String? = nil) {
-        
-        guard let searchtext = search,
-            !searchtext.isEmpty else {
-            return
-        }
-        
-        let fillter = arrPhotos.value.filter { (photo) -> Bool in
-            return (photo?.title?.contains("") ?? false)
-        }
-    }
-}
+
 
 // MARK: - URL Session Download Delegate -
 extension ImageViewModel: URLSessionDownloadDelegate {
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
-        // 1
+        
         guard let sourceURL = downloadTask.originalRequest?.url else {
             return
         }
@@ -92,7 +78,7 @@ extension ImageViewModel: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                     didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
-        // 1
+        
         guard
             let url = downloadTask.originalRequest?.url,
             let download = downloadService.activeDownloads[url]  else {

@@ -13,8 +13,6 @@ class ImageService {
     
     func fetchImages(key: String, handler: @escaping ((ImageModel?, Error?) -> ())) {
         
-        //           MILoader.shared.showLoader(type: .activityIndicatorWithMessage, message: nil)
-        
         _ = Networking.sharedInstance.GET(param: nil, tag: "cms", success: {[weak self] (sessionTask, response, code, data) in
             
             do {
@@ -37,20 +35,5 @@ class ImageService {
             handler(nil, error)
             print(error ?? NSError().localizedDescription)
         }
-    }
-    
-    func dowonloadImage(url: String, handler: @escaping ((UIImage?, Error?) -> ())) {
-     
-//        Networking.sharedInstance.DOWNLOAD(mediaUrl: url, success: {[weak self] (sessionTask, response, code, data) in
-//
-//            guard let _ = self,
-//            let image = response as? UIImage else {
-//                return
-//            }
-//
-//            handler(image, nil)
-//        }) { (task, error) in
-//
-//        }
     }
 }

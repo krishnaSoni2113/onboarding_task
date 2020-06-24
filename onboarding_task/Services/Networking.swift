@@ -28,7 +28,7 @@ final class Networking {
         let session = URLSession.shared
         var dataTask: URLSessionDataTask?
         
-        let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=a6ef5dcbcaf68383e4bda344ed3fb667&format=json&nojsoncallback=1")!
+        let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=8a9cbbf8d3a666a74f20801f3c3ff05a&format=json&nojsoncallback=1&api_sig=5ce53d0304b865f2a6e947dc0bd4a50d")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
